@@ -1,0 +1,22 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: test
+  title: Test
+spec:
+  owner: user:guest
+  type: service
+
+  parameters:
+    - title: Test custom filters
+      properties:
+        userName:
+          title: Name of the user
+          type: string
+
+  steps:
+    - id: debug
+      name: debug
+      action: debug:log
+      input:
+        message: ${{ parameters.userName | betterFilter | base64 }}
